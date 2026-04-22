@@ -1,1 +1,349 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlexBag 360</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+  <script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        lilac: { 50:'#faf5ff', 100:'#f3e8ff', 200:'#e9d5ff', 300:'#d8b4fe', 400:'#c084fc', 500:'#a855f7', 600:'#9333ea', 700:'#7e22ce' },
+        offwhite: '#faf8f5',
+        cream: '#f5f0eb'
+      }
+    }
+  }
+}
+</script>
+  <style>
+html, body { height:100%; margin:0; font-family:'Outfit',sans-serif; }
+.font-display { font-family:'Playfair Display',serif; }
+.app-root { height:100%; width:100%; overflow:auto; }
+.fade-in { animation: fadeIn .5s ease forwards; opacity:0; }
+.fade-in-delay-1 { animation-delay:.1s }
+.fade-in-delay-2 { animation-delay:.2s }
+.fade-in-delay-3 { animation-delay:.3s }
+.fade-in-delay-4 { animation-delay:.4s }
+.fade-in-delay-5 { animation-delay:.5s }
+@keyframes fadeIn { to { opacity:1; transform:translateY(0) } from { opacity:0; transform:translateY(12px) } }
+@keyframes pulse-glow { 0%,100%{ box-shadow:0 0 20px rgba(168,85,247,.2) } 50%{ box-shadow:0 0 35px rgba(168,85,247,.4) } }
+.glow { animation: pulse-glow 3s ease-in-out infinite; }
+.star-btn { cursor:pointer; transition:transform .15s,color .15s; }
+.star-btn:hover { transform:scale(1.2); }
+input[type=radio] { accent-color:#9333ea; }
+.screen { display:none; }
+.screen.active { display:flex; }
+::-webkit-scrollbar { width:4px } ::-webkit-scrollbar-thumb { background:#d8b4fe; border-radius:4px }
+</style>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="bg-offwhite">
+  <div id="app" class="app-root flex flex-col items-center"><!-- Screen: Home -->
+   <div id="screen-home" class="screen active flex-col items-center justify-center w-full min-h-full px-6 py-12 text-center" style="background:linear-gradient(160deg,#faf8f5 0%,#f3e8ff 50%,#e9d5ff 100%)">
+    <div class="fade-in max-w-md mx-auto"><!-- Bag SVG illustration -->
+     <div class="glow mx-auto mb-8 w-48 h-48 rounded-3xl flex items-center justify-center" style="background:linear-gradient(135deg,#c084fc,#7e22ce)">
+      <svg viewbox="0 0 120 120" width="120" height="120" fill="none"><path d="M35 45 C35 30, 45 22, 60 22 C75 22, 85 30, 85 45" stroke="#faf8f5" stroke-width="3" stroke-linecap="round" fill="none" /> <rect x="25" y="45" width="70" height="52" rx="12" fill="#faf8f5" fill-opacity=".15" stroke="#faf8f5" stroke-width="2.5" /> <circle cx="60" cy="65" r="4" fill="#fde68a" opacity=".9" /><line x1="60" y1="69" x2="60" y2="78" stroke="#fde68a" stroke-width="1.5" opacity=".6" /> <rect x="80" y="58" width="6" height="10" rx="2" fill="#faf8f5" opacity=".5" /> <path d="M38 80 h44" stroke="#faf8f5" stroke-width="1" opacity=".3" stroke-dasharray="3 3" />
+      </svg>
+     </div>
+     <h1 id="home-title" class="font-display text-4xl font-bold text-lilac-700 mb-3">FlexBag 360</h1>
+     <p id="home-slogan" class="text-lilac-500 text-lg font-light mb-10">Tecnologia, estilo e praticidade em um só lugar</p><button onclick="goTo('about')" class="bg-lilac-600 hover:bg-lilac-700 text-white px-10 py-4 rounded-2xl text-lg font-medium transition-all shadow-lg shadow-lilac-200 hover:shadow-xl hover:shadow-lilac-300 active:scale-95">Começar</button>
+    </div>
+   </div><!-- Screen: About -->
+   <div id="screen-about" class="screen flex-col w-full min-h-full px-5 py-8" style="background:linear-gradient(180deg,#faf8f5,#f3e8ff)">
+    <div class="max-w-lg mx-auto w-full"><button onclick="goTo('home')" class="text-lilac-500 mb-4 flex items-center gap-1 text-sm"><i data-lucide="arrow-left" style="width:16px;height:16px"></i> Voltar</button>
+     <h2 class="font-display text-3xl font-bold text-lilac-700 mb-2 fade-in">Sobre o Produto</h2>
+     <p class="text-lilac-400 mb-6 fade-in fade-in-delay-1">Conheça as funcionalidades que fazem da FlexBag 360 uma bolsa única.</p>
+     <div class="space-y-4">
+      <div class="fade-in fade-in-delay-1 bg-white/70 backdrop-blur rounded-2xl p-5 flex gap-4 items-start shadow-sm border border-lilac-100">
+       <div class="w-10 h-10 rounded-xl bg-lilac-100 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="sun" style="width:20px;height:20px;color:#9333ea"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-lilac-700 text-sm">Luz Interna Suave</h3>
+        <p class="text-xs text-lilac-400 mt-1">Iluminação LED delicada para encontrar seus itens facilmente, mesmo no escuro.</p>
+       </div>
+      </div>
+      <div class="fade-in fade-in-delay-2 bg-white/70 backdrop-blur rounded-2xl p-5 flex gap-4 items-start shadow-sm border border-lilac-100">
+       <div class="w-10 h-10 rounded-xl bg-lilac-100 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="usb" style="width:20px;height:20px;color:#9333ea"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-lilac-700 text-sm">Entrada USB Lateral</h3>
+        <p class="text-xs text-lilac-400 mt-1">Carregue seu smartphone discretamente enquanto caminha.</p>
+       </div>
+      </div>
+      <div class="fade-in fade-in-delay-3 bg-white/70 backdrop-blur rounded-2xl p-5 flex gap-4 items-start shadow-sm border border-lilac-100">
+       <div class="w-10 h-10 rounded-xl bg-lilac-100 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="thermometer" style="width:20px;height:20px;color:#9333ea"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-lilac-700 text-sm">Compartimento Térmico</h3>
+        <p class="text-xs text-lilac-400 mt-1">Mantenha alimentos e bebidas na temperatura ideal por horas.</p>
+       </div>
+      </div>
+      <div class="fade-in fade-in-delay-4 bg-white/70 backdrop-blur rounded-2xl p-5 flex gap-4 items-start shadow-sm border border-lilac-100">
+       <div class="w-10 h-10 rounded-xl bg-lilac-100 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="shield-check" style="width:20px;height:20px;color:#9333ea"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-lilac-700 text-sm">Bolsos Ocultos Antifurto</h3>
+        <p class="text-xs text-lilac-400 mt-1">Segurança invisível com compartimentos secretos e proteção antifungo.</p>
+       </div>
+      </div>
+      <div class="fade-in fade-in-delay-5 bg-white/70 backdrop-blur rounded-2xl p-5 flex gap-4 items-start shadow-sm border border-lilac-100">
+       <div class="w-10 h-10 rounded-xl bg-lilac-100 flex items-center justify-center flex-shrink-0">
+        <i data-lucide="droplets" style="width:20px;height:20px;color:#9333ea"></i>
+       </div>
+       <div>
+        <h3 class="font-semibold text-lilac-700 text-sm">Material Premium Impermeável</h3>
+        <p class="text-xs text-lilac-400 mt-1">Resistente à água com acabamento levemente brilhante e sofisticado.</p>
+       </div>
+      </div>
+     </div><button onclick="goTo('survey')" class="mt-8 w-full bg-lilac-600 hover:bg-lilac-700 text-white py-4 rounded-2xl font-medium transition-all shadow-lg shadow-lilac-200 active:scale-95">Avaliar Produto <i data-lucide="arrow-right" style="width:16px;height:16px;display:inline;vertical-align:middle;margin-left:4px"></i></button>
+    </div>
+   </div><!-- Screen: Survey -->
+   <div id="screen-survey" class="screen flex-col w-full min-h-full px-5 py-8 bg-offwhite">
+    <div class="max-w-lg mx-auto w-full"><button onclick="goTo('about')" class="text-lilac-500 mb-4 flex items-center gap-1 text-sm"><i data-lucide="arrow-left" style="width:16px;height:16px"></i> Voltar</button> <!-- Progress -->
+     <div class="mb-6">
+      <div class="flex justify-between text-xs text-lilac-400 mb-1">
+       <span>Progresso</span><span id="progress-text">0/10</span>
+      </div>
+      <div class="h-2 bg-lilac-100 rounded-full overflow-hidden">
+       <div id="progress-bar" class="h-full bg-gradient-to-r from-lilac-400 to-lilac-600 rounded-full transition-all duration-500" style="width:0%"></div>
+      </div>
+     </div>
+     <h2 class="font-display text-2xl font-bold text-lilac-700 mb-6">Pesquisa de Satisfação</h2>
+     <form id="survey-form" class="space-y-6" onsubmit="return false;"><!-- Q1: Stars -->
+      <div class="bg-white rounded-2xl p-5 border border-lilac-100 shadow-sm">
+       <p class="text-sm font-medium text-lilac-700 mb-3">1. Como você avalia o design da FlexBag 360?</p>
+       <div class="flex gap-2" id="stars-design"></div>
+      </div><!-- Q2-Q9: Radio -->
+      <div id="radio-questions"></div><!-- Q10: Stars -->
+      <div class="bg-white rounded-2xl p-5 border border-lilac-100 shadow-sm">
+       <p class="text-sm font-medium text-lilac-700 mb-3">10. Qual sua avaliação geral do produto?</p>
+       <div class="flex gap-2" id="stars-overall"></div>
+      </div><!-- Additional comment -->
+      <div class="bg-white rounded-2xl p-5 border border-lilac-100 shadow-sm"><label class="text-sm font-medium text-lilac-700 mb-2 block">Comentário adicional (opcional)</label> <textarea id="additional-comment" rows="3" class="w-full border border-lilac-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-lilac-300 resize-none" placeholder="Compartilhe sua opinião..."></textarea>
+      </div><!-- Feedback sections -->
+      <h3 class="font-display text-xl font-bold text-lilac-700 pt-2">Feedback</h3>
+      <div class="bg-white rounded-2xl p-5 border border-lilac-100 shadow-sm space-y-4">
+       <div>
+        <label class="text-sm font-medium text-lilac-700 mb-1 block flex items-center gap-1"><i data-lucide="alert-circle" style="width:14px;height:14px;color:#ef4444"></i> Reclamações</label><textarea id="complaint" rows="2" class="w-full border border-lilac-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-lilac-300 resize-none" placeholder="Descreva sua reclamação..."></textarea>
+       </div>
+       <div>
+        <label class="text-sm font-medium text-lilac-700 mb-1 block flex items-center gap-1"><i data-lucide="lightbulb" style="width:14px;height:14px;color:#f59e0b"></i> Sugestões</label><textarea id="suggestion" rows="2" class="w-full border border-lilac-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-lilac-300 resize-none" placeholder="Alguma sugestão de melhoria?"></textarea>
+       </div>
+       <div>
+        <label class="text-sm font-medium text-lilac-700 mb-1 block flex items-center gap-1"><i data-lucide="heart" style="width:14px;height:14px;color:#10b981"></i> Elogios</label><textarea id="praise" rows="2" class="w-full border border-lilac-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-lilac-300 resize-none" placeholder="O que você mais gostou?"></textarea>
+       </div>
+      </div><!-- User data -->
+      <h3 class="font-display text-xl font-bold text-lilac-700 pt-2">Seus Dados <span class="text-xs font-normal text-lilac-400">(opcional)</span></h3>
+      <div class="bg-white rounded-2xl p-5 border border-lilac-100 shadow-sm space-y-3">
+       <div>
+        <label for="user-name" class="text-xs text-lilac-500 mb-1 block">Nome</label><input id="user-name" type="text" class="w-full border border-lilac-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-lilac-300" placeholder="Seu nome">
+       </div>
+       <div>
+        <label for="user-email" class="text-xs text-lilac-500 mb-1 block">E-mail</label><input id="user-email" type="email" class="w-full border border-lilac-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-lilac-300" placeholder="seu@email.com">
+       </div>
+       <div>
+        <label for="user-phone" class="text-xs text-lilac-500 mb-1 block">Telefone</label><input id="user-phone" type="tel" class="w-full border border-lilac-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-lilac-300" placeholder="(00) 00000-0000">
+       </div>
+      </div><!-- Validation message -->
+      <div id="validation-msg" class="hidden text-red-500 text-sm bg-red-50 p-3 rounded-xl"></div><!-- Submit --> <button id="submit-btn" type="button" onclick="submitSurvey()" class="w-full bg-lilac-600 hover:bg-lilac-700 text-white py-4 rounded-2xl font-medium transition-all shadow-lg shadow-lilac-200 active:scale-95 flex items-center justify-center gap-2"> <span id="submit-text">Enviar Avaliação</span>
+       <div id="submit-spinner" class="hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div></button>
+     </form>
+    </div>
+   </div><!-- Screen: Thank You -->
+   <div id="screen-thanks" class="screen flex-col items-center justify-center w-full min-h-full px-6 py-12 text-center" style="background:linear-gradient(160deg,#faf8f5 0%,#f3e8ff 50%,#e9d5ff 100%)">
+    <div class="fade-in max-w-md mx-auto">
+     <div class="mx-auto mb-6 w-20 h-20 rounded-full bg-lilac-100 flex items-center justify-center">
+      <i data-lucide="check-circle" style="width:40px;height:40px;color:#9333ea"></i>
+     </div>
+     <h2 id="thanks-title" class="font-display text-3xl font-bold text-lilac-700 mb-3">Obrigado!</h2>
+     <p id="thanks-msg" class="text-lilac-500 mb-8">Obrigado por avaliar a FlexBag 360!</p><button onclick="resetAndHome()" class="bg-lilac-600 hover:bg-lilac-700 text-white px-8 py-3 rounded-2xl font-medium transition-all shadow-lg shadow-lilac-200 active:scale-95">Voltar ao Início</button>
+    </div>
+   </div>
+  </div>
+  <script>
+// State
+let designRating = 0, overallRating = 0;
+const radioQuestions = [
+  {n:2, q:"A iluminação interna é útil?", key:"lighting_useful"},
+  {n:3, q:"A entrada USB atende suas necessidades?", key:"usb_needs"},
+  {n:4, q:"O compartimento térmico funciona bem?", key:"thermal_works"},
+  {n:5, q:"Você considera a bolsa segura?", key:"secure_bag"},
+  {n:6, q:"A qualidade do material atende suas expectativas?", key:"material_quality"},
+  {n:7, q:"A bolsa é prática no dia a dia?", key:"practical_daily"},
+  {n:8, q:"O tamanho é adequado?", key:"size_adequate"},
+  {n:9, q:"Você recomendaria a FlexBag 360?", key:"would_recommend"}
+];
+const radioOpts = ["Sim","Parcialmente","Não"];
 
+// Build radio questions
+const rqContainer = document.getElementById('radio-questions');
+radioQuestions.forEach(rq => {
+  const div = document.createElement('div');
+  div.className = 'bg-white rounded-2xl p-5 border border-lilac-100 shadow-sm';
+  div.innerHTML = `<p class="text-sm font-medium text-lilac-700 mb-3">${rq.n}. ${rq.q}</p>
+    <div class="flex gap-4">${radioOpts.map((o,i) => `<label class="flex items-center gap-2 text-sm text-lilac-600 cursor-pointer"><input type="radio" name="${rq.key}" value="${o}"><span>${o}</span></label>`).join('')}</div>`;
+  rqContainer.appendChild(div);
+});
+
+// Build stars
+function buildStars(containerId, setter) {
+  const c = document.getElementById(containerId);
+  for(let i=1;i<=5;i++){
+    const s = document.createElement('button');
+    s.type='button'; s.className='star-btn text-lilac-200'; s.dataset.v=i;
+    s.innerHTML=`<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+    s.onclick=()=>{ setter(i); updateStars(containerId, i); updateProgress(); };
+    c.appendChild(s);
+  }
+}
+function updateStars(containerId, val) {
+  document.getElementById(containerId).querySelectorAll('.star-btn').forEach(b => {
+    b.className = 'star-btn ' + (parseInt(b.dataset.v)<=val?'text-yellow-400':'text-lilac-200');
+  });
+}
+buildStars('stars-design', v=>designRating=v);
+buildStars('stars-overall', v=>overallRating=v);
+
+// Progress
+function updateProgress() {
+  let answered = 0;
+  if(designRating>0) answered++;
+  radioQuestions.forEach(rq => { if(document.querySelector(`input[name="${rq.key}"]:checked`)) answered++; });
+  if(overallRating>0) answered++;
+  document.getElementById('progress-text').textContent = answered+'/10';
+  document.getElementById('progress-bar').style.width = (answered*10)+'%';
+}
+document.querySelectorAll('input[type=radio]').forEach(r=>r.addEventListener('change', updateProgress));
+
+// Navigation
+function goTo(screen) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+screen).classList.add('active');
+  document.getElementById('app').scrollTop=0;
+  lucide.createIcons();
+}
+
+function resetAndHome() {
+  designRating=0; overallRating=0;
+  updateStars('stars-design',0); updateStars('stars-overall',0);
+  document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);
+  document.querySelectorAll('textarea').forEach(t=>t.value='');
+  document.querySelectorAll('#survey-form input[type=text],#survey-form input[type=email],#survey-form input[type=tel]').forEach(i=>i.value='');
+  updateProgress();
+  document.getElementById('validation-msg').classList.add('hidden');
+  goTo('home');
+}
+
+// Submit
+async function submitSurvey() {
+  const vm = document.getElementById('validation-msg');
+  // Validate required: both star ratings and all radio questions
+  if(designRating===0 || overallRating===0) { vm.textContent='Por favor, preencha as avaliações por estrelas.'; vm.classList.remove('hidden'); return; }
+  for(const rq of radioQuestions) {
+    if(!document.querySelector(`input[name="${rq.key}"]:checked`)) { vm.textContent=`Por favor, responda a pergunta ${rq.n}.`; vm.classList.remove('hidden'); return; }
+  }
+  vm.classList.add('hidden');
+
+  const btn = document.getElementById('submit-btn');
+  const txt = document.getElementById('submit-text');
+  const spin = document.getElementById('submit-spinner');
+  btn.disabled=true; txt.textContent='Enviando...'; spin.classList.remove('hidden');
+
+  const record = {
+    type: 'survey',
+    design_rating: designRating,
+    overall_rating: overallRating,
+    additional_comment: document.getElementById('additional-comment').value||'',
+    complaint: document.getElementById('complaint').value||'',
+    suggestion: document.getElementById('suggestion').value||'',
+    praise: document.getElementById('praise').value||'',
+    user_name: document.getElementById('user-name').value||'',
+    user_email: document.getElementById('user-email').value||'',
+    user_phone: document.getElementById('user-phone').value||'',
+    submitted_at: new Date().toISOString()
+  };
+  radioQuestions.forEach(rq => { record[rq.key] = document.querySelector(`input[name="${rq.key}"]:checked`).value; });
+
+  const result = await window.dataSdk.create(record);
+  btn.disabled=false; txt.textContent='Enviar Avaliação'; spin.classList.add('hidden');
+  if(result.isOk) { goTo('thanks'); }
+  else { vm.textContent='Erro ao enviar. Tente novamente.'; vm.classList.remove('hidden'); }
+}
+
+// Data SDK init
+let allRecords = [];
+window.dataSdk.init({
+  onDataChanged(data) { allRecords = data; }
+});
+
+// Element SDK
+const defaultConfig = {
+  background_color: '#f3e8ff',
+  surface_color: '#ffffff',
+  text_color: '#6b21a8',
+  primary_action_color: '#9333ea',
+  secondary_action_color: '#c084fc',
+  font_family: 'Outfit',
+  font_size: 14,
+  product_name: 'FlexBag 360',
+  slogan: 'Tecnologia, estilo e praticidade em um só lugar',
+  thank_you_message: 'Obrigado por avaliar a FlexBag 360!'
+};
+
+function applyConfig(config) {
+  const c = k => config[k] || defaultConfig[k];
+  const font = c('font_family');
+  const base = c('font_size');
+  document.getElementById('app').style.fontFamily = `${font}, Outfit, sans-serif`;
+  document.getElementById('home-title').textContent = c('product_name');
+  document.getElementById('home-slogan').textContent = c('slogan');
+  document.getElementById('thanks-msg').textContent = c('thank_you_message');
+
+  // Colors
+  document.documentElement.style.setProperty('--bg', c('background_color'));
+  document.documentElement.style.setProperty('--surface', c('surface_color'));
+
+  // Font sizes
+  document.querySelectorAll('.font-display').forEach(el => {
+    if(el.classList.contains('text-4xl')) el.style.fontSize = base*2.5+'px';
+    else if(el.classList.contains('text-3xl')) el.style.fontSize = base*2+'px';
+    else if(el.classList.contains('text-2xl')) el.style.fontSize = base*1.7+'px';
+    else if(el.classList.contains('text-xl')) el.style.fontSize = base*1.4+'px';
+  });
+}
+
+window.elementSdk.init({
+  defaultConfig,
+  onConfigChange: async (config) => { applyConfig(config); },
+  mapToCapabilities: (config) => {
+    const c = k => config[k] || defaultConfig[k];
+    const make = (key) => ({ get:()=>c(key), set:(v)=>{ config[key]=v; window.elementSdk.setConfig({[key]:v}); } });
+    return {
+      recolorables: [make('background_color'), make('surface_color'), make('text_color'), make('primary_action_color'), make('secondary_action_color')],
+      borderables: [],
+      fontEditable: make('font_family'),
+      fontSizeable: make('font_size')
+    };
+  },
+  mapToEditPanelValues: (config) => new Map([
+    ['product_name', config.product_name || defaultConfig.product_name],
+    ['slogan', config.slogan || defaultConfig.slogan],
+    ['thank_you_message', config.thank_you_message || defaultConfig.thank_you_message]
+  ])
+});
+
+lucide.createIcons();
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f070125c06209d2',t:'MTc3Njg4NTgyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
